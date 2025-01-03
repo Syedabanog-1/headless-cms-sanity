@@ -1,0 +1,20 @@
+[
+  {
+    "fields": [
+      {
+        "name": "productName",
+        "type": "string"
+      },
+      {
+        "name": "price",
+        "type": "number"
+      },
+      {
+        "name": "image",
+        "type": "image"
+      }
+    ],
+    "name": "product",
+    "type": "document"
+  }
+]
