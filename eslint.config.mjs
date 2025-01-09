@@ -1,16 +1,40 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import globals from "globals";
+import pluginJs from "@eslint/js";
+import tseslint from "@typescript-eslint/eslint-plugin";
+import tsParser from "@typescript-eslint/parser"; // Required parser for TypeScript
+import pluginReact from "eslint-plugin-react";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+/** @type {import('eslint').Linter.Config} */
+const config = {
+  root: true,
+  ignorePatterns: ["next.config.js"],
+  env: {
+    browser: true,
+    node: true,
+    es2021: true,
+  },
+  parser: tsParser, // Set the TypeScript parser
+  parserOptions: {
+    ecmaVersion: 2021,
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true, // Enable JSX support
+    },
+  },
+  plugins: ["react", "@typescript-eslint"],
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+  ],
+  rules: {
+    "react/react-in-jsx-scope": "off", // Disable for React 17+
+  },
+  settings: {
+    react: {
+      version: "detect", // Automatically detect the React version
+    },
+  },
+};
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-];
-
-export default eslintConfig;
+export default config;
