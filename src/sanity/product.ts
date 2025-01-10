@@ -15,10 +15,16 @@ export const product = {
             title: 'Description'
         },
         {
+            name: 'slug',
+            type: 'number',
+            title: 'Slug',
+        },
+        {
             name: 'price',
             type: 'number',
             title: 'Product Price',
         },
+        
         {
             name: 'discountPercentage',
             type: 'number',
